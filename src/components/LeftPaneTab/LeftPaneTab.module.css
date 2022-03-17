@@ -1,7 +1,10 @@
 .rightPaneTab {
+  display: flex;
+  align-items: center;
   position: relative;
   margin: 5px;
   padding: 10px;
+  padding-left: 15px;
   border-radius: 4px;
   cursor: pointer;
   color: rgba(255,255,255,0.6);
@@ -24,10 +27,14 @@
 
 .rightPaneTab.selected {
   color: white;
-  background-color: var(--primary-color);
-  padding-left: 15px;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .rightPaneTab.selected::after {
   background-color: white;
+}
+.icon {
+  margin-right: 5px;
+  font-size: 18px;
+  opacity: 0.7;
 }

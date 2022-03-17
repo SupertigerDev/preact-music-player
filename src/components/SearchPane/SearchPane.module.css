@@ -1,11 +1,21 @@
 .searchPane {
   display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  right: 0;
   background-color: rgba(255, 255, 255, 0.1);
-  height: 50px;
-  border-radius: 50px;
+  padding: 7px;
+  backdrop-filter: blur(10px);
+  border-bottom: solid 1px rgba(255, 255, 255, 0.2);
+
+}
+.container {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.1);
+  height: 35px;
+  border-radius: 4px;
   width: 400px;
-  margin-top: 15px;
-  margin-left: 15px;
   overflow: hidden;
 }
 
@@ -15,14 +25,18 @@
   outline: none;
   background-color: transparent;
   color: white;
-  font-size: 18px;
-  padding-left: 20px;
-  padding-right: 20px;
+  font-size: 14px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .searchButton {
   outline: none;
-  background-color: var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.2);
   color: white;
   border: none;
   font-size: 16px;
+  width: 50px;
+  flex-shrink: 0;
+  cursor: pointer;
+  padding-top: 5px;
 }

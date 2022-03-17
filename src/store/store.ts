@@ -1,10 +1,10 @@
-import SelectedTabStore from './SelectedTabStore';
+import Navigator from './Navigator';
 
 export class Store {
-  selectedTab: SelectedTabStore;
+  navigator: Navigator;
 
   constructor() {
-    this.selectedTab = new SelectedTabStore();
+    this.navigator = new Navigator();
   }
 }
 

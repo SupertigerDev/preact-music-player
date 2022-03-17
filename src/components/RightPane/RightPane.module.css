@@ -1,3 +1,4 @@
 .leftPane {
+  position: relative;
   flex: 1;
 }
