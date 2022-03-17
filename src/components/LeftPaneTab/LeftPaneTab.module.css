@@ -1,0 +1,33 @@
+.rightPaneTab {
+  position: relative;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: rgba(255,255,255,0.6);
+  transition: 0.2s;
+}
+
+.rightPaneTab::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 10px;
+  width: 5px;
+  bottom: 10px;
+  border-radius: 8px;
+}
+.rightPaneTab:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.rightPaneTab.selected {
+  color: white;
+  background-color: var(--primary-color);
+  padding-left: 15px;
+}
+
+.rightPaneTab.selected::after {
+  background-color: white;
+}

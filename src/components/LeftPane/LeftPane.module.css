@@ -1,0 +1,10 @@
+.leftPane {
+  width: 300px;
+  flex-shrink: 0;
+  border-right: solid 1px rgba(255, 255, 255, 0.2);
+}
+
+.title {
+  font-size: 18px;
+  margin: 10px;
+}
