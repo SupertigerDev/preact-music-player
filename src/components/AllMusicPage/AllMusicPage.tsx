@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'preact/hooks';
+import { List, AutoSizer, AutoSizerProps } from 'react-virtualized';
 import Music from '../../Music';
 import MusicTemplate from '../MusicTemplate/MusicTemplate';
 import styles from './AllMusicPage.module.css';
@@ -11,12 +12,29 @@ export default function AllMusicPage() {
     setSongs(sorted);
   };
 
+  const rowRenderer = (prop: {key: string, index: number}) => (
+    <div key={prop.key} style={prop.style}>
+      <MusicTemplate music={songs[prop.index]} />
+    </div>
+  );
   useEffect(() => {
     findAllMusic();
   }, []);
+  if (!songs.length) return <div>Loading...</div>;
   return (
     <div className={styles.allMusicPage}>
-      {songs.map((music) => <MusicTemplate key={music.path} music={music} />)}
+      <AutoSizer>
+        {({ height, width }: AutoSizerProps) => (
+          <List
+            rowCount={songs.length}
+            rowHeight={45}
+            width={width}
+            height={height}
+            rowRenderer={rowRenderer}
+          />
+        )}
+      </AutoSizer>
+      {/* {songs.map((music) => <MusicTemplate key={music.path} music={music} />)} */}
     </div>
   );
 }
