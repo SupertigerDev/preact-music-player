@@ -1,3 +1,9 @@
 .allMusicPage {
-  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 100%;
+  padding-top: 55px;
+  padding-bottom: 85px;
+  gap: 5px
 }

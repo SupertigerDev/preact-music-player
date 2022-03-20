@@ -7,7 +7,7 @@ import styles from './RightPane.module.css';
 const RightPane = observer(() => {
   const Page = store.navigator.component;
   return (
-    <div className={styles.leftPane}>
+    <div className={styles.rightPane}>
       <SearchPane />
       <Page />
       <NowPlayingPane />

@@ -1,4 +1,8 @@
-.leftPane {
+.rightPane {
+  display: flex;
+  flex-direction: column;
   position: relative;
   flex: 1;
+  overflow: hidden;
+  height: 100%
 }
