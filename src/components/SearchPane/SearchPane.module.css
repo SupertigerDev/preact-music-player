@@ -7,6 +7,7 @@
   padding: 7px;
   backdrop-filter: blur(10px);
   border-bottom: solid 1px rgba(255, 255, 255, 0.2);
+  z-index: 1111;
 
 }
 .container {

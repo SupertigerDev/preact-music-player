@@ -1,9 +1,10 @@
 .allMusicPage {
   display: flex;
   flex-direction: column;
-  overflow: auto;
   height: 100%;
+  gap: 5px
+}
+.ReactVirtualized__Grid__innerScrollContainer {
   padding-top: 55px;
   padding-bottom: 85px;
-  gap: 5px
 }
