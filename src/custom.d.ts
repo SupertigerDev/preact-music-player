@@ -1,6 +1,6 @@
 interface Window {
   api: {
     findAllMusic(): Promise<import('./Music').default[]>
-    getMusicMetaData(): Promise<any>
+    getMusicMetaData(path: string): Promise<any>
   }
 }
