@@ -13,3 +13,12 @@
 .albumArt {
   margin-left: 5px;
 }
+.musicDetails {
+  margin-left: 5px;
+}
+.musicName {
+
+}
+.artistName {
+  opacity: 0.6;
+}

@@ -1,7 +1,7 @@
-const { BrowserWindow, app } = require('electron');
+const { BrowserWindow, app, ipcMain } = require('electron');
 const path = require('path');
 
-require('./metadata');
+const { getMusicMetaData } = require('./metadata');
 
 app.whenReady().then(() => {
   const win = new BrowserWindow({
@@ -12,4 +12,9 @@ app.whenReady().then(() => {
     },
   });
   win.loadURL('http://localhost:3000');
+
+  ipcMain.handle('getMetadata', async (event, dir) => {
+    const metadata = await getMusicMetaData(dir);
+    return metadata;
+  });
 });

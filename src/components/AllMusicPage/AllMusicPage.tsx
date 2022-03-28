@@ -34,9 +34,9 @@ export default function AllMusicPage() {
           <List
             rowCount={songs.length}
             rowHeight={({ index }: any) => {
-              if (!index) return 120;
-              if (index >= songs.length - 1) return 145;
-              return 65;
+              if (!index) return 130;
+              if (index >= songs.length - 1) return 155;
+              return 75;
             }}
             width={width}
             height={height}

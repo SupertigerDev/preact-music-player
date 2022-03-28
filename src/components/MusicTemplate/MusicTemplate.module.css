@@ -1,13 +1,32 @@
 .music {
+  position: relative;
   display: flex;
   align-items: center;
   margin-left: 5px;
   margin-right: 5px;
   border-radius: 4px;
   cursor: pointer;
+  padding: 5px;
+  overflow: hidden;
+  outline: none;
 
 }
-.musicName {
-  margin-left: 5px;
 
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.8;
+  height: 100%;
+  width: 100%;
+  filter: blur(20px);
+}
+.musicDetails {
+  margin-left: 5px;
+}
+.musicName {
+
+}
+.artistName {
+  opacity: 0.6;
 }

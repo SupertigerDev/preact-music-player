@@ -10,7 +10,7 @@ const RightPane = observer(() => {
     <div className={styles.rightPane}>
       <SearchPane />
       <Page />
-      <NowPlayingPane />
+      {!!store.nowPlaying.path && <NowPlayingPane />}
     </div>
   );
 });

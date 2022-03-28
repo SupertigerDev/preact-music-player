@@ -3,7 +3,6 @@ const FlakeId = require('@brecert/flakeid').default;
 const path = require('path');
 const fs = require('fs');
 const musicMetadata = require('music-metadata');
-const nodeVibrant = require('node-vibrant');
 const database = require('./database');
 
 const rootDir = path.join(__dirname, '../album_art_cache');
@@ -28,27 +27,32 @@ const fetchMetaData = (dir) => new Promise((res, rej) => {
 });
 
 async function albumArtDetails(metadata) {
-  const cover = musicMetadata.selectCover(metadata.common.picture);
-  if (!cover.data) return null;
-  const ext = cover.format.split('/')[1];
-  const artId = flake.gen().toString();
-  const basename = `${artId}.${ext}`;
-  fs.writeFileSync(`${rootDir}/${basename}`, cover.data);
-
-  const color = (await nodeVibrant.from(cover.data).getPalette()).DarkVibrant.hex;
-  return { basename, color };
+  return new Promise((res) => {
+    const cover = musicMetadata.selectCover(metadata.common.picture);
+    if (!cover?.data) res(null);
+    const ext = cover.format.split('/')[1];
+    const artId = flake.gen().toString();
+    const basename = `${artId}.${ext}`;
+    fs.writeFile(`${rootDir}/${basename}`, cover.data, async () => {
+      res({ basename });
+    });
+  });
 }
 
 async function getAndInsertMusicMetadata(dir) {
-  const metadata = await musicMetadata.parseFile(dir);
+  const metadata = await musicMetadata.parseFile(dir).catch(() => {});
+  const title = metadata?.common?.title;
+  const artist = metadata?.common?.artist;
 
   const albumArt = await albumArtDetails(metadata);
   if (!albumArt) {
-    database.run('INSERT INTO music_cache (dir) VALUES (?, ?, ?)', [dir]);
+    database.run('INSERT INTO music_cache (dir, title, artist) VALUES (?, ?, ?)', [dir, title, artist], () => {});
   } else {
-    database.run('INSERT INTO music_cache (dir, album_art_basename, color) VALUES (?, ?, ?)', [dir, albumArt.basename, albumArt.color]);
+    database.run('INSERT INTO music_cache (dir, album_art_basename, title, artist) VALUES (?, ?, ?, ?)', [dir, albumArt.basename, title, artist], () => {});
   }
-  return { dir, album_art_basename: albumArt.basename, color: albumArt.color };
+  return {
+    dir, album_art_basename: albumArt?.basename, title, artist,
+  };
 }
 
 async function getMusicMetaData(dir) {
@@ -56,8 +60,6 @@ async function getMusicMetaData(dir) {
   if (metadata) return metadata;
   return getAndInsertMusicMetadata(dir);
 }
-
-getMusicMetaData('D:/Fishie/Desktop/Mitis.mp3').then((res) => { console.log(res); });
 
 module.exports = {
   getMusicMetaData,
